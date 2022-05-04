@@ -1,3 +1,5 @@
+require 'colorize'
+
 class ConsoleInterface
   # В константе FIGURES будут лежать все текстовые файлы из папки figures,
   # помещённые в массив. Один элемент массива — одна строка с содержимым целого
@@ -18,17 +20,17 @@ class ConsoleInterface
 
   def print_out
     puts <<~END
-      Слово: #{word_to_show}
-      #{figure}
-      Ошибки (#{@game.errors_made}): #{errors_to_show}
+      #{colorize("Слово: #{word_to_show}", :blue)}
+      #{colorize(figure, :yellow)}
+      #{colorize("Ошибки (#{@game.errors_made}): #{errors_to_show}", :red)}
       У вас осталось ошибок: #{@game.errors_allowed}
 
     END
 
     if @game.won?
-      puts 'Поздравляем, вы выиграли!'
+      puts colorize('Поздравляем, вы выиграли!', :green)
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово: #{@game.word}"
+      puts colorize("Вы проиграли, загаданное слово: #{@game.word}", :red)
     end
   end
 
@@ -47,5 +49,11 @@ class ConsoleInterface
   def get_input
     print 'Введите следующую букву: '
     gets[0].upcase
+  end
+
+  private
+
+  def colorize(text, color)
+    text.colorize(color)
   end
 end
