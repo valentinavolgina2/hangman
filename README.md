@@ -3,11 +3,15 @@
 Консольная игра «Виселица», написанная на Ruby
 
 Чтобы запустить игру:
+
+Шаг 1:
 ```
-Шаг 1: bundle install
+bundle install
 ```
+
+Шаг 2:
 ```
-Шаг 2: bundle exec ruby main.rb
+bundle exec ruby main.rb
 ```
 
 ## Правила игры
